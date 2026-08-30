@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+    background-color:#17253f;
+    margin:0;
+    padding: 0;
+    
+}
+
+#nav-list{
+    list-style: none;/*con esto quitamos los puntos del nav,ul*/
+    margin: 0;/*elimina los margenes que vienen por defecto*/
+    padding: 0;/*elimina el relleno que viene por defecto*/
+    display: flex;/*pone en horizontal*/
+    gap: 20px;/*Pone el espacio entre los li*/
+    
+
+}
+
+#imagen-logo{
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    }
