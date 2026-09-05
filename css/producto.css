@@ -1,0 +1,16 @@
+header{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+    background-color:#17253f;
+    margin:0;
+    padding: 0;
+    
+}
+
+.menu{
+    text-decoration: none;/*Quita lo subrayado del a*/
+    color: #790000;/*Pone el color del texto*/
+    font-weight: bold;/*Texto mas Grueso    */
+}
