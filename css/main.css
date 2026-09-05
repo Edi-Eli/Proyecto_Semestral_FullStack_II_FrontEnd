@@ -126,7 +126,7 @@ main { flex: 1; }
     margin-bottom: 12px;            /* Separación hacia el botón */
 }
 
-.btn-car {
+.btn-pro {
     background-color: #17253f;       /* boton color */
     color: #ffffff;                  /* Texto boton color */
     border: none;                      /* Elimina el borde de los botones por defecto */
@@ -136,7 +136,7 @@ main { flex: 1; }
     cursor: pointer;                   /* Cambia la flecha del mouse a una manito indicando que es clickeable */
 }
 
-.btn-car:hover {
+.btn-pro {
   background-color: #2b3e66;      /* Cambia el fondo a un azul más claro como respuesta visual */
 }
 
