@@ -5,4 +5,72 @@
     margin: 10px;
 }
 
+.cont-carrito {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
 
+.tarjeta-carrito {
+    background-color: #ffffff;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tarjeta-carrito img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.tarjeta-carrito .nombre {
+    flex: 1;
+    font-size: 1rem;
+    color: #030f22;
+}
+
+.tarjeta-carrito .precio {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #0e1b15;
+}
+
+.btn-eliminar {
+    background-color: #790000;
+    color: #ffffff;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.resumen-carrito {
+    margin-top: 25px;
+    padding: 0 10px;
+    text-align: right;
+}
+
+.resumen-carrito h3 {
+    font-size: 1.1rem;
+    color: #030f22;
+    margin-bottom: 5px;
+}
+
+.btn-car {
+    background-color: #17253f;       /* boton color */
+    color: #ffffff;                  /* Texto boton color */
+    border: none;                      /* Elimina el borde de los botones por defecto */
+    padding: 10px;                     /* Espacio interno arriba y abajo para darle grosor */
+    border-radius: 5px;                /* Esquinas sutilmente redondeadas */
+    font-weight: bold;                 /* Texto en negrita */
+    cursor: pointer;                   /* Cambia la flecha del mouse a una manito indicando que es clickeable */
+}
