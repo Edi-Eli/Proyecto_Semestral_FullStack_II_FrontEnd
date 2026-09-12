@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Administracion - Inicio</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <admin-nav></admin-nav>
+    <script src="../componet/AdminNav.js"></script>
+
+    <main class="admin-contenido">
+        <h1>Panel de Administracion</h1>
+        <p class="admin-saludo">Bienvenido al sistema de administracion de Ferreteria Los Maestros.</p>
+
+        <section class="tarjetas-resumen" id="resumen-admin"></section>
+
+        <section class="accesos-rapidos">
+            <a href="admin-productos.html">Gestionar Productos</a>
+            <a href="admin-usuario.html">Gestionar Usuarios</a>
+        </section>
+    </main>
+
+    <script src="../js/admin.js"></script>
+    <script>
+        const tarjetas = document.getElementById("resumen-admin");
+        const productos = getProductos();
+        const usuarios = getUsuarios();
+        const stockBajo = productos.filter((producto) => producto.stock <= producto.stockCritico).length;
+
+        tarjetas.innerHTML = `
+            <article class="tarjeta-resumen">
+                <h2>Productos</h2>
+                <p>${productos.length}</p>
+            </article>
+            <article class="tarjeta-resumen">
+                <h2>Stock bajo</h2>
+                <p>${stockBajo}</p>
+            </article>
+            <article class="tarjeta-resumen">
+                <h2>Usuarios</h2>
+                <p>${usuarios.length}</p>
+            </article>
+        `;
+    </script>
+</body>
+</html>
