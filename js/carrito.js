@@ -17,16 +17,13 @@ function mostrarCarrito() {
         totalAcumulado += producto.precio;
 
         const item = document.createElement("div");
-        item.classList.add("tarjeta-carrito");
+        item.classList.add("item-carrito");
 
         item.innerHTML = `
-            <img src="${producto.imagen || 'assets/imagenes/image.png'}" alt="${producto.nombre}">
-            <strong class="nombre">${producto.nombre}</strong>
-            <span class="precio">$${producto.precio.toLocaleString("es-CL")}</span>
-            <button class="btn-eliminar" onclick="eliminarProducto(${indice})">X</button>
+            <span><strong>${producto.nombre}</strong></span>
+            <span>$${producto.precio.toLocaleString("es-CL")}</span>
+            <button class="btn-eliminar" onlick="eliminarProducto(${indice})">X</button>
         `;
-        contenedorLista.appendChild(item);
-
     })
 
     elementoTotal.textContent = `$${totalAcumulado.toLocaleString("es-CL")}`;
@@ -35,7 +32,7 @@ function mostrarCarrito() {
 
 function eliminarProducto(indice) {
     carrito.splice(indice,1);
-    localStorage.setItem("carritoFerreteria", JSON.stringify(carrito));
+    localStorage.setItem("carritoFerretaria", JSON.stringify(carrito));
     mostrarCarrito();
 }
 
