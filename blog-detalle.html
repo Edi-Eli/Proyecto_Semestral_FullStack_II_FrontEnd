@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Blog</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <nav-no></nav-no>
+    <script src="componet/Header.js"></script>
+
+    <main>
+        <div id="contenedor-detalle" class="blog-detalle"></div>
+    </main>
+
+    <flo-to></flo-to>
+    <script src="componet/Flooter.js"></script>
+    <script src="js/blogs.js"></script>
+    <script>
+        const contenedorDetalle = document.getElementById("contenedor-detalle");
+
+        function obtenerParametro(nombre) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(nombre);
+        }
+
+        function mostrarDetalle() {
+            const id = obtenerParametro("id");
+            const blog = getBlog(id);
+
+            if (!blog) {
+                contenedorDetalle.classList.add("blog-no-encontrado");
+                contenedorDetalle.innerHTML = `
+                    <h2>Artículo no encontrado</h2>
+                    <p>El artículo que buscas no existe o fue eliminado.</p>
+                    <button class="btn-volver" onclick="window.location.href='blogs.html'">Volver a Blogs</button>
+                `;
+                return;
+            }
+
+            contenedorDetalle.innerHTML = `
+                <h2>${blog.titulo}</h2>
+                <img src="${blog.imagen}" alt="${blog.titulo}">
+                <p class="blog-texto">${blog.descripcionLarga}</p>
+                <button class="btn-volver" onclick="window.location.href='blogs.html'">Volver a Blogs</button>
+            `;
+        }
+
+        mostrarDetalle();
+    </script>
+</body>
+</html>
