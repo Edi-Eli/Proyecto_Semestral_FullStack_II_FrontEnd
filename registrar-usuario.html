@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Registrarse</title>
@@ -11,11 +11,242 @@
     <script src="componet/Header.js"></script>
 
     <main>
+        <h2 class="titulo-pagina">Registro de Usuario</h2>
 
+        <form id="form-registro" class="form-card formulario-registro" novalidate>
+
+            <div class="form-group">
+                <label class="form-label" for="run">RUN <span class="obligatorio">*</span></label>
+                <input type="text" id="run" class="form-control" placeholder="Ej: 19011022k" maxlength="9">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="nombre">Nombre <span class="obligatorio">*</span></label>
+                <input type="text" id="nombre" class="form-control" placeholder="Ej: Juan" maxlength="50">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="apellidos">Apellidos <span class="obligatorio">*</span></label>
+                <input type="text" id="apellidos" class="form-control" placeholder="Ej: Pérez Soto" maxlength="100">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="correo">Correo <span class="obligatorio">*</span></label>
+                <input type="email" id="correo" class="form-control" placeholder="Ej: nombre@duoc.cl" maxlength="100">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="fecha-nacimiento">Fecha de nacimiento</label>
+                <input type="date" id="fecha-nacimiento" class="form-control">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group form-group-region">
+                <label class="form-label" for="region">Región</label>
+                <select id="region" class="form-control">
+                    <option value="">Seleccione una región</option>
+                </select>
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group form-group-comuna">
+                <label class="form-label" for="comuna">Comuna <span class="obligatorio">*</span></label>
+                <select id="comuna" class="form-control">
+                    <option value="">Primero seleccione una región</option>
+                </select>
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="direccion">Dirección <span class="obligatorio">*</span></label>
+                <textarea id="direccion" class="form-control" rows="2" placeholder="Ej: Antonio Varas 666" maxlength="300"></textarea>
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn-form">Registrarme</button>
+            </div>
+
+        </form>
     </main>
 
     <flo-to></flo-to>
     <script src="componet/Flooter.js"></script>
+    <script src="js/regiones.js"></script>
+    <script src="js/validaciones.js"></script>
+
+    <script>
+        const formRegistro = document.getElementById("form-registro");
+
+        function cargarRegiones() {
+            const selectRegion = document.getElementById("region");
+            REGIONES.forEach(region => {
+                const opcion = document.createElement("option");
+                opcion.value = region.id;
+                selectRegion.appendChild(opcion);
+            });
+        }
+
+        function cargarComunas() {
+            const selectComuna = document.getElementById("comuna");
+            const idRegion = document.getElementById("region").value;
+
+            selectComuna.innerHTML = '<option value="">Seleccione una comuna</option>';
+
+            if (idRegion === "") {
+                selectComuna.disabled = true;
+                return;
+            }
+
+            selectComuna.disabled = false;
+            getComunas(idRegion).forEach(comuna => {
+                const opcion = document.createElement("option");
+                opcion.value = comuna;
+                opcion.textContent = comuna;
+                selectComuna.appendChild(opcion);
+            });
+        }
+
+        //Validacion por campo
+
+        function validarRun() {
+            const run = document.getElementById("run").value;
+            if (!requerido(run)) {
+                agregarError("run", "El RUN es requerido.");
+                return false;
+            }
+            if (!validarRun(run)) {
+                agregarError("run", "RUN inválido: usa 7 u 8 dígitos sin puntos ni guiones (ej: 19011022k).");
+                return false;
+            }
+            limpiarError("run");
+            return true;
+        }
+
+        function validarNombre() {
+            const nombre = document.getElementById("nombre").value;
+            if (!requerido(nombre)) {
+                agregarError("nombre", "El nombre es requerido.");
+                return false;
+            }
+            if (!maxCaracteres(nombre, 50)) {
+                agregarError("nombre", "El nombre no puede superar los 50 caracteres.")
+                return false;
+            }
+            limpiarError("nombre")
+            return true;
+        }
+
+        function validarApellidos() {
+            const apellidos = document.getElementById("apellidos").value;
+            if (!requerido(apellidos)) {
+                agregarError("apellidos", "Los apellidos son requeridos.");
+                return false;
+            }
+            if (!maxCaracteres(apellidos, 100)) {
+                agregarError("apellidos", "Los apellidos no pueden superar los 100 caracteres.");
+                return false;
+            }
+            limpiarError("apellidos");
+            return true;
+        }
+
+        function validarCorreo() {
+            const correo = document.getElementById("correo").value;
+            if (!requerido(correo)) {
+                agregarError("correo", "El correo es requerido.");
+                return false;
+            }
+            if (!maxCaracteres(correo, 100)) {
+                agregarError("correo", "El correo no puede superar los 100 caracteres.");
+                return false;
+            }
+            if (!esCorreoValido(correo)) {
+                agregarError("correo", "Usa un correo con dominio @duoc.cl, @profesor.duoc.cl o @gmail.com.");
+                return false;
+            }
+            limpiarError("correo");
+            return true;
+        }
+
+        function validarRegion() {
+            const region = document.getElementById("region").value;
+            if (!requerido(region)) {
+                agregarError("region", "Debes seleccionar una región.");
+                return false;
+            }
+            limpiarError("region");
+            return true;
+        }
+
+        function validarComuna() {
+            const comuna = document.getElementById("comuna").value;
+            if (!requerido(comuna)) {
+                agregarError("comuna", "Debes seleccionar una comuna.");
+                return false;
+            }
+            limpiarError("comuna");
+            return true;
+        }
+
+        function validarDireccion() {
+            const direccion = document.getElementById("direccion").value;
+            if (!requerido(direccion)) {
+                agregarError("direccion", "La dirección es requerida.");
+                return false;
+            }
+            if (!maxCaracteres(direccion, 300)) {
+                agregarError("direccion", "La dirección no puede superar los 300 caracteres.");
+                return false;
+            }
+            limpiarError("direccion");
+            return true;
+        }
+
+        //Eventos en tiempo real
+
+        document.getElementById("run").addEventListener("input", validarRun);
+        document.getElementById("nombre").addEventListener("input", validarNombre);
+        document.getElementById("apellidos").addEventListener("input", validarApellidos);
+        document.getElementById("correo").addEventListener("input", validarCorreo);
+        document.getElementById("region").addEventListener("change", () => {
+            cargarComunas();
+            validarRegion();
+            validarComuna();
+        });
+        document.getElementById("comuna").addEventListener("change", validarComuna);
+        document.getElementById("direccion").addEventListener("input", validarDireccion);
+
+        //Envio
+
+        formRegistro.addEventListener("submit", (evento) => {
+            evento.preventDefault();
+
+            const valido = validarRun()
+                & validarNombre()
+                & validarApellidos()
+                & validarCorreo()
+                & validarRegion()
+                & validarComuna()
+                & validarDireccion();
+
+            if (valido) {
+                alert("¡Registro completado con éxito!");
+                formRegistro.reset();
+            } else {
+                alert("Revisa los campos marcados en rojo.")
+            }
+        });
+
+        //Inicializacion
+
+        cargarRegiones();
+        cargarComunas();
+    </script>
 
 </body>
 </html>
