@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Administracion - Usuarios</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <admin-nav></admin-nav>
+    <script src="../componet/AdminNav.js"></script>
+
+    <main class="admin-contenido">
+        <h1>Mantenedor de Usuarios</h1>
+
+        <section class="seccion-tabla">
+            <h2>Listado de usuarios</h2>
+            <table class="tabla-admin">
+                <thead>
+                    <tr>
+                        <th>Run</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Correo</th>
+                        <th>Tipo de usuario</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla-usuarios"></tbody>
+            </table>
+        </section>
+
+        <section class="seccion-formulario">
+            <h2 id="titulo-form-usuario">Nuevo usuario</h2>
+
+            <form id="form-usuario" novalidate>
+                <input type="hidden" id="indice-usuario">
+
+                <div class="campo-form">
+                    <label for="run-usuario">Run</label>
+                    <input type="text" id="run-usuario" placeholder="sin puntos ni guion, ej: 190110222">
+                    <p class="mensaje-error" id="error-run-usuario"></p>
+                </div>
+
+                <div class="campo-form">
+                    <label for="nombre-usuario">Nombre</label>
+                    <input type="text" id="nombre-usuario" maxlength="50">
+                    <p class="mensaje-error" id="error-nombre-usuario"></p>
+                </div>
+
+                <div class="campo-form">
+                    <label for="apellidos-usuario">Apellidos</label>
+                    <input type="text" id="apellidos-usuario" maxlength="100">
+                    <p class="mensaje-error" id="error-apellidos-usuario"></p>
+                </div>
+
+                <div class="campo-form">
+                    <label for="correo-usuario">Correo</label>
+                    <input type="email" id="correo-usuario" maxlength="100" placeholder="usuario@duoc.cl">
+                    <p class="mensaje-error" id="error-correo-usuario"></p>
+                </div>
+
+                <div class="campo-form">
+                    <label for="fecha-nacimiento-usuario">Fecha de nacimiento (opcional)</label>
+                    <input type="date" id="fecha-nacimiento-usuario">
+                    <p class="mensaje-error" id="error-fecha-nacimiento-usuario"></p>
+                </div>
+
+                <div class="campo-form">
+                    <label for="tipo-usuario">Tipo de usuario</label>
+                    <select id="tipo-usuario"></select>
+                    <p class="mensaje-error" id="error-tipo-usuario"></p>
+                </div>
+
+                <div class="campo-form">
+                    <label for="region-usuario">Region</label>
+                    <select id="region-usuario"></select>
+                    <p class="mensaje-error" id="error-region-usuario"></p>
+                </div>
+
+                <div class="campo-form">
+                    <label for="comuna-usuario">Comuna</label>
+                    <select id="comuna-usuario"></select>
+                    <p class="mensaje-error" id="error-comuna-usuario"></p>
+                </div>
+
+                <div class="campo-form">
+                    <label for="direccion-usuario">Direccion</label>
+                    <input type="text" id="direccion-usuario" maxlength="300">
+                    <p class="mensaje-error" id="error-direccion-usuario"></p>
+                </div>
+
+                <div class="botones-form">
+                    <button type="submit" class="btn-admin btn-guardar">Guardar usuario</button>
+                    <button type="button" class="btn-admin btn-limpiar" onclick="limpiarFormularioUsuario()">Cancelar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/validaciones.js"></script>
+    <script src="../js/admin-usuario.js"></script>
+</body>
+</html>

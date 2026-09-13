@@ -24,8 +24,8 @@
     <script src="../js/admin.js"></script>
     <script>
         const tarjetas = document.getElementById("resumen-admin");
-        const productos = getProductos();
-        const usuarios = getUsuarios();
+        const productos = obtenerProductos();
+        const usuarios = obtenerUsuarios();
         const stockBajo = productos.filter((producto) => producto.stock <= producto.stockCritico).length;
 
         tarjetas.innerHTML = `

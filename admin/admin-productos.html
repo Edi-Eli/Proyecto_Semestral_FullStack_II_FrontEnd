@@ -5,3 +5,97 @@
     <title>Administracion - Productos</title>
     <link rel="stylesheet" href="../css/admin.css">
 </head>
+<body>
+    <admin-nav></admin-nav>
+    <script src="../componet/AdminNav.js"></script>
+
+    <main class="admin-contenido">
+        <h1>Mantenedor de Productos</h1>
+
+        <section class="seccion-tabla">
+            <h2>Listado de productos</h2>
+            <table class="tabla-admin">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Categoria</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Stock critico</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla-productos"></tbody>
+            </table>
+        </section>
+
+        <section class="seccion-formulario">
+            <h2 id="titulo-form-producto">Nuevo producto</h2>
+
+            <p class="alerta-stock" id="aviso-stock"></p>
+
+            <form id="form-producto" novalidate>
+                <input type="hidden" id="indice-producto">
+
+                <div class="campo-form">
+                    <label for="codigo-producto">Codigo producto</label>
+                    <input type="text" id="codigo-producto">
+                    <p class="mensaje-error" id="error-codigo-producto"></p>
+                </div>
+
+                <div class="campo-form">
+                    <label for="nombre-producto">Nombre</label>
+                    <input type="text" id="nombre-producto" maxlength="100">
+                    <p class="mensaje-error" id="error-nombre-producto"></p>
+                </div>
+
+                <div class="campo-form">
+                    <label for="descripcion-producto">Descripcion (opcional)</label>
+                    <textarea id="descripcion-producto" rows="3" maxlength="500"></textarea>
+                    <p class="mensaje-error" id="error-descripcion-producto"></p>
+                </div>
+
+                <div class="campo-form">
+                    <label for="precio-producto">Precio</label>
+                    <input type="text" id="precio-producto" inputmode="decimal" placeholder="0">
+                    <p class="mensaje-error" id="error-precio-producto"></p>
+                </div>
+
+                <div class="campo-form">
+                    <label for="stock-producto">Stock</label>
+                    <input type="text" id="stock-producto" inputmode="numeric" placeholder="0">
+                    <p class="mensaje-error" id="error-stock-producto"></p>
+                </div>
+
+                <div class="campo-form">
+                    <label for="stock-critico-producto">Stock critico (opcional)</label>
+                    <input type="text" id="stock-critico-producto" inputmode="numeric" placeholder="0">
+                    <p class="mensaje-error" id="error-stock-critico-producto"></p>
+                </div>
+
+                <div class="campo-form">
+                    <label for="categoria-producto">Categoria</label>
+                    <select id="categoria-producto"></select>
+                    <p class="mensaje-error" id="error-categoria-producto"></p>
+                </div>
+
+                <div class="campo-form">
+                    <label for="imagen-producto">Imagen (opcional)</label>
+                    <input type="text" id="imagen-producto" placeholder="ruta o url de la imagen">
+                    <p class="mensaje-error" id="error-imagen-producto"></p>
+                </div>
+
+                <div class="botones-form">
+                    <button type="submit" class="btn-admin btn-guardar">Guardar producto</button>
+                    <button type="button" class="btn-admin btn-limpiar" onclick="limpiarFormularioProducto()">Cancelar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/validaciones.js"></script>
+    <script src="../js/admin-productos.js"></script>
+</body>
+</html>
