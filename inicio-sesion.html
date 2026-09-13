@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Iniciar Cuenta</title>
+    <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -10,11 +10,84 @@
     <script src="componet/Header.js"></script>
 
     <main>
+        <h2 class="titulo-pagina">Iniciar Sesión</h2>
 
+        <form id="form-login" class="login-card" novalidate>
+
+            <div class="form-group">
+                <label class="form-label" for="correo-login">Correo <span class="obligatorio">*</span></label>
+                <input type="email" id="correo-login" class="form-control" placeholder="Ej: nombre@duoc.cl" maxlength="100">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="contrasena-login">Contraseña <span class="obligatorio">*</span></label>
+                <input type="password" id="contrasena-login" class="form-control" placeholder="Entre 4 y 10 caracteres" maxlength="10">
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn-form">Ingresar</button>
+            </div>
+
+            <p class="login-enlace">
+                ¿Aún no tienes cuenta? <a href="registrar-usuario.html">Regístrate aquí</a>
+            </p>
+        </form>
     </main>
 
     <flo-to></flo-to>
     <script src="componet/Flooter.js"></script>
+    <script src="js/validaciones.js"></script>
+    <script>
+        const formLogin = document.getElementById("form-login");
 
+        function validarCorreo() {
+            const correo = document.getElementById("correo-login").value;
+            if (!requerido(correo)) {
+                agregarError("correo-login", "El correo es requerido.");
+                return false;
+            }
+            if (!maxCaracteres(correo, 100)) {
+                agregarError("correo-login", "El correo no puede superar los 100 caracteres.");
+                return false;
+            }
+            if (!esCorreoValido(correo)) {
+                agregarError("correo-login", "Usa un correo con dominio @duoc.cl, @profesor.duoc.cl o @gmail.com.");
+                return false;
+            }
+            limpiarError("correo-login");
+            return true;
+        }
+
+        function validarContrasena() {
+            const contrasena = document.getElementById("contrasena-login").value;
+            if (!requerido(contrasena)) {
+                agregarError("contrasena-login", "La contraseña es requerida.");
+                return false;
+            }
+            if (contrasena.length < 4 || contrasena.length > 10) {
+                agregarError("contrasena-login", "La contraseña debe tener entre 4 y 10 caracteres.");
+                return false;
+            }
+            limpiarError("contrasena-login");
+            return true;
+        }
+
+        document.getElementById("correo-login").addEventListener("input", validarCorreo);
+        document.getElementById("contrasena-login").addEventListener("input", validarContrasena);
+
+        formLogin.addEventListener("submit", (evento) => {
+            evento.preventDefault();
+
+            if (validarCorreo() & validarContrasena()) {
+                alert("¡Sesión iniciada correctamente!");
+                window.location.href = "index.html";
+            } else {
+                alert("Revisa los campos marcados en rojo.");
+            }
+        });
+    </script>
+    
 </body>
 </html>

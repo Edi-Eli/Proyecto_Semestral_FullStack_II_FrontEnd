@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Blog</title>
@@ -10,11 +10,40 @@
     <script src="componet/Header.js"></script>
 
     <main>
+        <h2 class="titulo-pagina">Nuestro Blog</h2>
 
+        <section class="seccion-pro">
+            <div id="contenedor-blogs" class="conte-blogs"></div>
+        </section>
     </main>
 
     <flo-to></flo-to>
     <script src="componet/Flooter.js"></script>
+    <script src="js/blogs.js"></script>
+    <script>
+        const contenedorBlogs = document.getElementById("contenedor-blogs");
 
+        function mostrarBlogs() {
+            contenedorBlogs.innerHTML = "";
+
+            BLOGS.forEach(blog => {
+                const tarjeta = document.createElement("article");
+                tarjeta.classList.add("tarjeta-blog");
+
+                tarjeta.innerHTML = `
+                    <img src="${blog.imagen}" alt="${blog.titulo}">
+                    <h3>${blog.titulo}</h3>
+                    <p>${blog.descripcionCorta}</p>
+                    <button class="btn-blog" onclick="window.location.href='blog-detalle.html?id=${blog.id}'">
+                        Leer más
+                    </button>
+                `;
+
+                contenedorBlogs.appendChild(tarjeta);
+            });
+        }
+
+        mostrarBlogs();
+    </script>
 </body>
 </html>
