@@ -11,7 +11,7 @@ class HeaderCus extends HTMLElement {
                     <li><a href="productos.html">Productos</a></li>
                     <li><a href="nosotros.html">Nosotros</a></li>
                     <li><a href="blogs.html">Blogs</a></li>
-                    <li><a href="nosotros.html">Contacto</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
                 </ul>
             </nav>
 
