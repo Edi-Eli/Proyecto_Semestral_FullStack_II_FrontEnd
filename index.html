@@ -36,90 +36,22 @@
     <main>
         <h2 class="ti-pro">Nuestros Productos</h2>
         <section class="seccion-pro">
+            <div class="conte-tar-pro" id="contenedor-productos"></div>
+            <script src="js/producto.js"></script>
+            <script>
+                const contenedor = document.getElementById("contenedor-productos");
 
-                <!--Producto1-->
-            <div class="conte-tar-pro">
-                <article class="tarjeta-pro">
-                    <img src="assets/imagenes/images.jpeg" alt="Caja Herramientas">
-                    <h3>Caja De Herramientas</h3>
-                    <p class="precio">$8.990</p>
-                    <button class="btn-pro" onclick="window.location.href='productos.html'">Ver Producto</button>
-                </article>
-
-                <!--Producto2-->
-                <article class="tarjeta-pro">
-                    <img src="assets/imagenes/8739196_01.jpg" alt="Esmeril Angular">
-                    <h3>Esmeril Angular eléctrico</h3>
-                    <p class="precio">$50.000</p>
-                    <button class="btn-pro" onclick="window.location.href='productos.html'">Ver Producto</button>
-                </article>
-
-                <!--Producto3-->
-                <article class="tarjeta-pro">
-                    <img src="assets/imagenes/w=1500,h=1500,fit=cover.png" alt="Taladro Inalámbrico">
-                    <h3>Pack Taladro Inalámbrico</h3>
-                    <p class="precio">$1.500</p>
-                    <button class="btn-pro" onclick="window.location.href='productos.html'">Ver Producto</button>
-                </article>
-
-                <!--Producto4-->
-                <article class="tarjeta-pro">
-                    <img src="assets/imagenes/images (1).jpeg" alt="Cepillo Eléctrico">
-                    <h3>Cepillo Eléctrico</h3>
-                    <p class="precio">$45.990</p>
-                    <button class="btn-pro" onclick="window.location.href='productos.html'">Ver Producto</button>
-                </article>
-
-                <!--Producto5-->
-                <article class="tarjeta-pro">
-                    <img src="assets/imagenes/images (3).jpeg" alt="13 En 1 Destornillador">
-                    <h3>13 En 1 Destornillador</h3>
-                    <p class="precio">$45.990</p>
-                    <button class="btn-pro" onclick="window.location.href='productos.html'">Ver Producto</button>
-                </article>
-
-                <!--Producto6-->
-                <article class="tarjeta-pro">
-                    <img src="assets/imagenes/images (2).jpeg" alt="MAZO">
-                    <h3>MAZO 16</h3>
-                    <p class="precio">$45.990</p>
-                    <button class="btn-pro" onclick="window.location.href='productos.html'">Ver Producto</button>
-                </article>
-                
-                <!--Producto7-->
-                <article class="tarjeta-pro">
-                    <img src="assets/imagenes/descargar.jpeg" alt="Martillo">
-                    <h3>Martillo Carpintero Madera</h3>
-                    <p class="precio">$45.990</p>
-                    <button class="btn-pro" onclick="window.location.href='productos.html'">Ver Producto</button>
-                </article>
-
-                <!--Producto8-->
-                <article class="tarjeta-pro">
-                    <img src="assets/imagenes/alicate.png" alt="Set Alicates">
-                    <h3>Set de Alicates Universal</h3>
-                    <p class="precio">$45.990</p>
-                    <button class="btn-pro" onclick="window.location.href='productos.html'">Ver Producto</button>
-                </article>
-
-                <!--Producto9-->
-                <article class="tarjeta-pro">
-                    <img src="assets/imagenes/public.jpeg" alt="Llave punta">
-                    <h3>Llave punta corona</h3>
-                    <p class="precio">$45.990</p>
-                    <button class="btn-pro" onclick="window.location.href='productos.html'">Ver Producto</button>
-                </article>
-
-                <!--Producto10-->
-                <article class="tarjeta-pro">
-                    <img src="assets/imagenes/images (4).jpeg" alt="Martillo Demoledor">
-                    <h3>Martillo Demoledor</h3>
-                    <p class="precio">$45.990</p>
-                    <button class="btn-pro" onclick="window.location.href='productos.html'">Ver Producto</button>
-                </article>
-
-
-            </div>
+                PRODUCTOS.forEach(p => {
+                    const imagen = p.imagen || "assets/imagenes/image.png";
+                    contenedor.innerHTML += `
+                        <article class="tarjeta-pro">
+                            <img src="${imagen}" alt="${p.nombre}">
+                            <h3>${p.nombre}</h3>
+                            <p class="precio">$${p.precio.toLocaleString("es-CL")}</p>
+                            <button class="btn-pro" onclick="window.location.href='detalle-producto.html?id=${p.id}'">Ver Producto</button>
+                        </article>`;
+                });
+            </script>
         </section>
     </main>
 
@@ -150,6 +82,7 @@
         </div>
 
     </footer>
+
 
 </body>
 </html>
